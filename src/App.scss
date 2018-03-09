@@ -1,0 +1,30 @@
+* {
+
+}
+ul {
+  list-style-type: none;
+}
+p {
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+#right-nav-container ul {
+  display: flex;
+  flex-direction: row;
+}
+.nav-hover-link:hover ~ .nav-hover-content {
+  display: inline;
+}
+.nav-hover-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  left: 0;
+}

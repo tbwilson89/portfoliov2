@@ -1,27 +1,60 @@
 ul {
   list-style-type: none; }
 
+a {
+  text-decoration: none; }
+
 p {
   margin: 0;
   padding: 0; }
+
+.App {
+  height: 100vh;
+  background-color: grey; }
+
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column; }
 
 nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center; }
+  align-items: center;
+  height: 7%;
+  padding: 0 25px; }
 
 #right-nav-container ul {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
+
+#right-nav-container li {
+  padding: 5px 15px; }
 
 .nav-hover-link:hover ~ .nav-hover-content {
+  display: inline; }
+
+.nav-hover-content:hover {
   display: inline; }
 
 .nav-hover-content {
   display: none;
   position: absolute;
   right: 0;
-  left: 0; }
+  left: 0;
+  background-color: white; }
+
+.main-content {
+  flex-grow: 1;
+  background-color: #232323; }
+
+@keyframes hover-content {
+  from {
+    display: inline; }
+  to {
+    display: none; } }
 
 /*# sourceMappingURL=App.css.map */

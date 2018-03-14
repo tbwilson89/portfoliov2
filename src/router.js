@@ -7,6 +7,8 @@ import about from './components/about'
 import social from './components/social'
 import contact from './components/contact'
 
+import card from './components/projects/cardgame/card'
+import GameBoard from './components/projects/cardgame/gameboard'
 
 export default class Redirects extends Component {
   render(){
@@ -71,7 +73,8 @@ export default class Redirects extends Component {
                <Route path='/about' component={about} />
                <Route path='/social' component={social} />
                <Route path='/contact' component={contact} />
-               {/* <Route path='' component={} /> */}
+               <Route path='/card' component={card} />
+               <Route path='/gameboard' component={GameBoard} />
              </section>
 
            </div>

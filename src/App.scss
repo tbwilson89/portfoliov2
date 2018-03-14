@@ -25,7 +25,7 @@ nav {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 7%;
+  height: 7vh;
   padding: 0 25px;
 }
 #right-nav-container ul {
@@ -49,10 +49,12 @@ nav {
   right: 0;
   left: 0;
   background-color: white;
+  z-index: 200;
 }
 
 .main-content {
-  flex-grow: 1;
+  height: 93vh;
+  // flex-grow: 1;
   background-color: #232323;
 }
 

@@ -200,7 +200,7 @@ export default class GameBoard extends Component {
 
         <div id='details' className='details-view'>
           <div className='details-view-expand' onClick={this.expandDetails}>{this.state.detailsExpanded ? '>' : '<'}</div>
-          <div className='details-view-card'>{this.state.cardPreview ? <Card /> : null}</div>
+          <div className='details-view-card'><Card loc={'playerHand'+'1'} cardSize='full' cardData={this.state.playerHand[1]} key={'playerHand'+'1'} onHover={this.onCardHover}/>{this.state.cardPreview ? <Card /> : null}</div>
         </div>
         <div className='player-hand'>
           {playerHand}

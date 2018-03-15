@@ -58,7 +58,7 @@ export default class CardTest extends Component {
       cardNum++
     }
     return(
-      <div id={this.props.loc} location={this.props.loc} className='card-wrapper' onMouseOver={this.props.onHover}>
+      <div id={this.props.loc} location={this.props.loc} className='card-wrapper' onMouseEnter={this.props.onHover} >
         <div className='card-top-line'>
           <div className='card-casting'>
             <div className='card-cost'>{card.cost}</div>

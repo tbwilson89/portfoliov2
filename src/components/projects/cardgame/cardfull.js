@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 import '../../../styles/css/card.css'
 
-export default class CardTest extends Component {
+export default class Card extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -38,7 +38,6 @@ export default class CardTest extends Component {
     // this.checkOverFlow = this.checkOverFlow.bind(this)
   }
   componentDidMount(){
-    console.log(this.props.data)
   }
 
   // checkOverFlow(e){
@@ -58,7 +57,7 @@ export default class CardTest extends Component {
       cardNum++
     }
     return(
-      <div id={this.props.loc} location={this.props.loc} className='card-wrapper' onMouseEnter={this.props.onHover} >
+      <div id={this.props.loc} location={this.props.loc} className='card-wrapper' onClick={this.props.onClick} onMouseEnter={() => this.props.onHover(this.props.loc, this.props.data)} >
         <div className='card-top-line'>
           <div className='card-casting'>
             <div className='card-cost'>{card.cost}</div>
@@ -73,14 +72,17 @@ export default class CardTest extends Component {
             <div className='card-type'>{`${card.cardType} - ${card.cardRace} ${card.cardClass}`}</div>
           </div>
         </div>
+
         <div className='card-image-box'>
           <img src={card.image} alt='card'/>
         </div>
+
         <div className='card-effects'>
           {card.cardEffects.offense ? <div className='card-effects-box offense'>{card.cardEffects.offense}</div> : null}
           {card.cardEffects.defense ? <div className='card-effects-box defense'>{card.cardEffects.defense}</div> : null}
           {card.cardEffects.neutral ? <div className='card-effects-box neutral'>{card.cardEffects.neutral}</div> : null}
         </div>
+
         <div className='card-bottom'>
           <div>
             <div className='card-stats'>
@@ -89,6 +91,11 @@ export default class CardTest extends Component {
           </div>
           <div className='card-legal'>&copy; Trevor B Wilson 2018</div>
         </div>
+
+        <div className='card-click-menu' style={{display: this.props.shouldDisplay[0] === this.props.loc ? 'inline':'none',top: this.props.shouldDisplay[2],left: this.props.shouldDisplay[1]}}>
+          <button onClick={()=>this.props.playCard(this.props.loc, this.props.data)}>Play this card!</button>
+        </div>
+
         {/* <div className='card-info-box'></div> */}
       </div>
     )

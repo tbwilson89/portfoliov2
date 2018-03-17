@@ -104,14 +104,17 @@
       width: 82%;
       border: 1px solid black; }
       .board-wrapper .board-player-side .player-field .resources {
+        display: flex;
         height: 32%;
         border: 1px solid black;
         background-color: green; }
       .board-wrapper .board-player-side .player-field .defense {
+        display: flex;
         height: 32%;
         border: 1px solid black;
         background-color: blue; }
       .board-wrapper .board-player-side .player-field .offense {
+        display: flex;
         height: 32%;
         border: 1px solid black;
         background-color: red; }
@@ -159,6 +162,10 @@
       height: 3%;
       border: 1px solid black;
       text-align: center; }
+    .board-wrapper .details-view .details-view-card {
+      height: 400px;
+      display: flex;
+      align-items: center; }
   .board-wrapper .show {
     right: 0%; }
   .board-wrapper .player-hand {

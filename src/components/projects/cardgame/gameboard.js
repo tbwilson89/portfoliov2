@@ -84,7 +84,34 @@ export default class GameBoard extends Component {
             },
             cardPower: 3,
             cardDefense: 2
-          }
+          },
+          {
+            name: 'Fighter',
+            cost: '2',
+            devotion: {
+              fire: 2,
+              earth: 2,
+              wind: 2,
+              electric: 2,
+              void: 2,
+              aether: 2,
+              light: 2,
+              dark: 2,
+              water: 2,
+              ice: 2
+            },
+            cardType: 'Unit',
+            cardRace: 'Human',
+            cardClass: 'Warrior',
+            image: fighterImage,
+            cardEffects: {
+              offense: '+1 attack',
+              defense: 'FIGHTERS DO NOT DEFEND',
+              neutral: 'I have no opinion either way on this card...',
+            },
+            cardPower: 2,
+            cardDefense: 3
+          },
         ],
         offense: []
       },
@@ -110,16 +137,42 @@ export default class GameBoard extends Component {
       },
 
       detailsExpanded: false,
-      cardPreview: null,
+      cardPreview: [],
+      cardMenuLoc: '',
+      menuX: '',
+      menuY: '',
     }
+    this.onLeftClick = this.onLeftClick.bind(this)
     this.removeHealth = this.removeHealth.bind(this)
     this.addHealth = this.addHealth.bind(this)
     this.expandDetails = this.expandDetails.bind(this)
     this.onCardHover = this.onCardHover.bind(this)
+    this.playCard = this.playCard.bind(this)
+    this._onPageClick = this._onPageClick.bind(this)
   }
   componentDidMount(){
-
+    document.addEventListener('click', this._onPageClick)
   }
+  _onPageClick(e){
+    e.stopPropagation()
+
+    if(this.state.justHandledClick !== true){
+      this.setState({cardMenuLoc: ''})
+      console.log('page click ran')
+
+    } else {
+      this.setState({justHandledClick: false})
+    }
+  }
+  onLeftClick(e){
+    this.setState({
+      menuX: e.clientX,
+      menuY: e.clientY,
+      cardMenuLoc: e.currentTarget.id,
+      justHandledClick: true
+    })
+  }
+
 
   addHealth(e){
     let newHealth = this.state[`${e.currentTarget.id}Health`] + 1
@@ -147,19 +200,88 @@ export default class GameBoard extends Component {
     })
   }
 
-  onCardHover(e){
-    console.log(e.currentTarget)
-    console.log(e.currentTarget.location)
+  onCardHover(loc, data){
+    this.setState({
+      cardPreview: [loc, data]
+    })
+  }
+
+  playCard(loc, data){
+    let playerHand = JSON.parse(JSON.stringify(this.state.playerHand))
+    let playerField = JSON.parse(JSON.stringify(this.state.playerField))
+    let cardPos = loc.split('').filter((v) => !isNaN(v)).join('')
+
+    if(data.cardType !== 'resource'){
+      playerField.defense.push(playerHand[cardPos])
+      playerHand.splice(cardPos, 1)
+
+      this.setState({
+        playerHand,
+        playerField
+      })
+    } else {
+      playerField.resources.push(playerHand[cardPos])
+      playerHand.splice(cardPos, 1)
+
+      this.setState({
+        playerHand,
+        playerField
+      })
+    }
+  }
+  returnCard(loc, data){
+    let playerHand = JSON.parse(JSON.stringify(this.state.playerHand))
+    let playerField = JSON.parse(JSON.stringify(this.state.playerField))
+    let cardPos = loc.split('').filter((v) => !isNaN(v)).join('')
+    let cardFieldPos = loc.split('').filter((v)=> isNaN(v)).join('')
+
+    if(data.cardType !== 'resource'){
+      playerField.defense.push(playerHand[cardPos])
+      playerHand.splice(cardPos, 1)
+
+      this.setState({
+        playerHand,
+        playerField
+      })
+    } else {
+      playerField.resources.push(playerHand[cardPos])
+      playerHand.splice(cardPos, 1)
+
+      this.setState({
+        playerHand,
+        playerField
+      })
+    }
   }
 
   render(){
     let playerHand = []
+    let previewLoc = this.state.cardPreview[0]
+    let previewData = this.state.cardPreview[1]
     this.state.playerHand.forEach((card, i)=>{
-      playerHand.push(<Card loc={'playerHand'+i} cardSize='full' cardData={card} key={'playerHand'+i} onHover={this.onCardHover}/>)
+      playerHand.push(
+        <div style={{margin: '0 5px'}} key={'playerHand'+i}>
+          <Card
+            loc={'playerHand'+i}
+            cardSize='full'
+            cardData={card}
+            key={'playerHand'+i}
+            playCard={this.playCard}
+            handleClick={this.onLeftClick}
+            onHover={this.onCardHover}
+            clickMenu={[this.state.cardMenuLoc,this.state.menuX,this.state.menuY]}/>
+        </div>)
     })
     let playerDefense = []
     this.state.playerField.defense.forEach((card, i)=>{
-      playerDefense.push(<Card loc={'playerDefense'+i} cardSize='mini' cardData={card} key={'playerDefense'+i} onHover={this.onCardHover}/>)
+      playerDefense.push(
+        <Card
+          loc={'playerDefense'+i}
+          cardSize='mini'
+          cardData={card}
+          key={'playerDefense'+i}
+          onHover={this.onCardHover}/>
+      )
     })
     return(
       <div className='board-wrapper'>
@@ -184,11 +306,13 @@ export default class GameBoard extends Component {
         </div>
 
         <div className='board-player-side'>
+
           <div className='player-field'>
             <div className='offense'></div>
             <div className='defense'>{playerDefense}</div>
             <div className='resources'></div>
           </div>
+
           <div className='player-sidebar'>
             <div className='paragon' id='player' onClick={this.addHealth} onContextMenu={this.removeHealth}>
               <div className='player-health'>{this.state.playerHealth}</div>
@@ -200,10 +324,16 @@ export default class GameBoard extends Component {
 
         <div id='details' className='details-view'>
           <div className='details-view-expand' onClick={this.expandDetails}>{this.state.detailsExpanded ? '>' : '<'}</div>
-          <div className='details-view-card'><Card loc={'playerHand'+'1'} cardSize='full' cardData={this.state.playerHand[1]} key={'playerHand'+'1'} onHover={this.onCardHover}/>{this.state.cardPreview ? <Card /> : null}</div>
+          <div className='details-view-card'>
+            {this.state.cardPreview.length >= 2 ? (
+              <Card loc={previewLoc} cardSize='full' cardData={previewData} key={previewLoc} clickMenu={['none']} onHover={function(){}} />
+            ) : null}
+          </div>
+          <button onClick={() => this.playCard(previewLoc, previewData)}>TEST BUTTON</button>
         </div>
         <div className='player-hand'>
           {playerHand}
+
         </div>
       </div>
     )

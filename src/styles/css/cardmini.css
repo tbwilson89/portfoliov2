@@ -1,0 +1,89 @@
+* {
+  box-sizing: border-box; }
+
+.card-mini-wrapper {
+  position: relative;
+  height: 98%;
+  width: 200px;
+  padding: 3px 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+  .card-mini-wrapper .card-mini-topline {
+    display: flex;
+    z-index: 1; }
+    .card-mini-wrapper .card-mini-topline .card-mini-cost {
+      width: 15%; }
+      .card-mini-wrapper .card-mini-topline .card-mini-cost .fire {
+        background-color: red; }
+      .card-mini-wrapper .card-mini-topline .card-mini-cost .wind {
+        background-color: lime; }
+      .card-mini-wrapper .card-mini-topline .card-mini-cost .earth {
+        background-color: brown; }
+      .card-mini-wrapper .card-mini-topline .card-mini-cost .electric {
+        background-color: yellow; }
+      .card-mini-wrapper .card-mini-topline .card-mini-cost .void {
+        background-color: purple;
+        color: white; }
+      .card-mini-wrapper .card-mini-topline .card-mini-cost .aether {
+        background-color: silver; }
+      .card-mini-wrapper .card-mini-topline .card-mini-cost .light {
+        background-color: #eee; }
+      .card-mini-wrapper .card-mini-topline .card-mini-cost .dark {
+        background-color: black;
+        color: white; }
+      .card-mini-wrapper .card-mini-topline .card-mini-cost .water {
+        background-color: blue; }
+      .card-mini-wrapper .card-mini-topline .card-mini-cost .ice {
+        background-color: cyan; }
+      .card-mini-wrapper .card-mini-topline .card-mini-cost .card-mini-total-cost {
+        background-color: black;
+        color: white;
+        text-align: center; }
+      .card-mini-wrapper .card-mini-topline .card-mini-cost .card-mini-supply-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        width: 150%; }
+        .card-mini-wrapper .card-mini-topline .card-mini-cost .card-mini-supply-wrapper .card-mini-supply {
+          width: 33.333%;
+          text-align: center; }
+  .card-mini-wrapper .card-mini-image-box {
+    position: absolute;
+    overflow: hidden;
+    height: 98%;
+    width: 98%; }
+    .card-mini-wrapper .card-mini-image-box img {
+      width: 100%;
+      overflow: hidden; }
+  .card-mini-wrapper .card-mini-bottom {
+    z-index: 1;
+    background-color: #ddd;
+    display: flex;
+    flex-grow: 0;
+    justify-content: space-between; }
+    .card-mini-wrapper .card-mini-bottom .card-mini-stats {
+      background-color: lightgrey;
+      position: absolute;
+      bottom: 5%;
+      height: 15%;
+      width: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid black;
+      box-shadow: 2px 2px 10px black; }
+    .card-mini-wrapper .card-mini-bottom .card-stat-attack {
+      left: 2.5%; }
+    .card-mini-wrapper .card-mini-bottom .card-stat-defense {
+      right: 2.5%; }
+    .card-mini-wrapper .card-mini-bottom .card-mini-name-type {
+      position: absolute;
+      bottom: 5%;
+      right: 20%;
+      height: 15%;
+      width: 60%;
+      text-align: center;
+      background-color: lightgrey;
+      border: 1px solid black; }
+
+/*# sourceMappingURL=cardmini.css.map */

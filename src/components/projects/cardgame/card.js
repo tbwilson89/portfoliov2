@@ -8,8 +8,15 @@ export default class Card extends Component {
   render(){
     let Card = this.props.cardSize === 'full' ? CardFull : CardMini
     return(
-      <div>
-        <Card loc={this.props.loc} data={this.props.cardData} onHover={this.props.onHover}/>
+      <div style={{height: '100%'}}>
+        <Card
+          loc={this.props.loc}
+          data={this.props.cardData}
+          playCard={this.props.playCard}
+          shouldDisplay={this.props.clickMenu}
+          onClick={this.props.handleClick}
+          onHover={this.props.onHover}
+        />
       </div>
     )
   }

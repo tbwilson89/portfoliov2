@@ -1,0 +1,116 @@
+* {
+  box-sizing: border-box;
+}
+
+.card-mini-wrapper {
+  position: relative;
+  height: 98%;
+  width: 200px;
+  padding: 3px 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .card-mini-topline {
+    display: flex;
+    z-index: 1;
+    .card-mini-cost {
+      width: 15%;
+      .fire {
+        background-color: red;
+      }
+      .wind {
+        background-color: lime;
+      }
+      .earth {
+        background-color: brown;
+      }
+      .electric {
+        background-color: yellow;
+      }
+      .void {
+        background-color: purple;
+        color: white;
+      }
+      .aether {
+        background-color: silver;
+      }
+      .light {
+        background-color: #eee;
+      }
+      .dark {
+        background-color: black;
+        color: white;
+      }
+      .water {
+        background-color: blue;
+      }
+      .ice {
+        background-color: cyan;
+      }
+      .card-mini-total-cost {
+        background-color: black;
+        color: white;
+        text-align: center;
+      }
+      .card-mini-supply-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        width: 150%;
+        .card-mini-supply {
+          width: 33.333%;
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .card-mini-image-box {
+    position: absolute;
+    overflow: hidden;
+    height: 98%;
+    width: 98%;
+    img {
+      width: 100%;
+      overflow: hidden;
+    }
+  }
+
+  .card-mini-bottom {
+    z-index: 1;
+    background-color: #ddd;
+    display: flex;
+    flex-grow: 0;
+    justify-content: space-between;
+
+    .card-mini-stats {
+      background-color: lightgrey;
+      position: absolute;
+      bottom: 5%;
+      height: 15%;
+      width: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid black;
+      box-shadow: 2px 2px 10px black;
+
+    }
+    .card-stat-attack {
+      left: 2.5%;
+    }
+    .card-stat-defense {
+      right: 2.5%;
+    }
+    .card-mini-name-type {
+      position: absolute;
+      bottom: 5%;
+      right: 20%;
+      height: 15%;
+      width: 60%;
+      text-align: center;
+      background-color: lightgrey;
+      border: 1px solid black;
+    }
+  }
+}

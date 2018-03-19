@@ -74,7 +74,14 @@ export default class GameBoard extends Component {
     let playerCards = JSON.parse(JSON.stringify(this.state.playerCardZones))
     playerCards.hand.push(JSON.parse(JSON.stringify(cardInfo.fighter)))
     playerCards.hand.push(JSON.parse(JSON.stringify(cardInfo.battleMage)))
+    playerCards.hand.push(JSON.parse(JSON.stringify(cardInfo.cleric)))
+    playerCards.hand.push(JSON.parse(JSON.stringify(cardInfo.librarian)))
+    let options = [cardInfo.fighter, cardInfo.battleMage, cardInfo.cleric, cardInfo.librarian]
+    for(let i = 0; i<30;i++){
+      playerCards.deck.push(JSON.parse(JSON.stringify(options[Math.floor(Math.random() * 4)])))
+    }
 
+    console.log(this.state.playerCardZones.deck)
     this.setState({playerCardZones: playerCards})
     let testArr = cardInfo.fighter
     let breakArr = cardInfo.fighter
@@ -228,7 +235,9 @@ export default class GameBoard extends Component {
       <div className='board-wrapper'>
         <div className='board-sidebar'>
           <div className='opponent-sidebar'></div>
-          <div className='player-sidebar'></div>
+          <div className='player-sidebar'>
+            <div className='player-deck-info' style={{marginRight: '50px'}}>{this.state.playerCardZones.deck.length}</div>
+          </div>
         </div>
 
         <div className='board-opponent-side'>

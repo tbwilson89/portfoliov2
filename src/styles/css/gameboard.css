@@ -182,8 +182,11 @@
     left: 0;
     right: 0;
     margin: auto;
-    transition: bottom 1s; }
+    transition: bottom .5s; }
     .board-wrapper .player-hand:hover {
       bottom: 0; }
+  .board-wrapper .card-test-click-menu {
+    position: fixed;
+    z-index: 1000; }
 
 /*# sourceMappingURL=gameboard.css.map */

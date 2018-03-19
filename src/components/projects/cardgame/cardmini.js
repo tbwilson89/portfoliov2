@@ -12,7 +12,7 @@ export default class CardMini extends Component {
       )
     }
     return(
-      <div id={this.props.loc} location={this.props.loc} className='card-mini-wrapper' onMouseEnter={() => this.props.onHover(this.props.loc, this.props.data)}>
+      <div id={this.props.loc} location={this.props.loc} className='card-mini-wrapper' onClick={this.props.onClick} onMouseEnter={() => this.props.onHover(this.props.loc, this.props.data)}>
 
         <div className='card-mini-topline'>
           <div className='card-mini-cost'>
@@ -39,6 +39,8 @@ export default class CardMini extends Component {
               {/* <div className='card-mini-type'>{`${card.cardType} - ${card.cardRace} ${card.cardClass}`}</div> */}
             </div>
           </div>
+
+
           {/* <div className='card-legal'>&copy; Trevor B Wilson 2018</div> */}
         </div>
 

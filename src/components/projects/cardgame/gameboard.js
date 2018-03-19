@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 
 import '../../../styles/css/gameboard.css'
+import cardInfo from  './database/cardinfo.js'
 
 import shadowFace from './images/shadowface.jpg'
-import fighterImage from './images/fighter.png'
 
 import Card from './card'
 
@@ -13,107 +13,21 @@ export default class GameBoard extends Component {
     this.state = {
       playerHealth: 20,
       playerDeck: [],
-      playerHand: [
-        {
-          name: 'Fighter',
-          cost: '2',
-          devotion: {
-            fire: 2,
-            earth: 2,
-            wind: 2,
-            electric: 2,
-            void: 2,
-            aether: 2,
-            light: 2,
-            dark: 2,
-            water: 2,
-            ice: 2
-          },
-          cardType: 'Unit',
-          cardRace: 'Human',
-          cardClass: 'Warrior',
-          image: fighterImage,
-          cardEffects: {
-            offense: '+1 attack',
-            defense: 'FIGHTERS DO NOT DEFEND',
-            neutral: 'I have no opinion either way on this card...',
-          },
-          cardPower: 2,
-          cardDefense: 3
-        },
-        {
-          name: 'Battle Mage',
-          cost: '4',
-          devotion: {
-            fire: 3,
-            water: 2,
-          },
-          cardType: 'Unit',
-          cardRace: 'Human',
-          cardClass: 'Mage',
-          image: fighterImage,
-          cardEffects: {
-            offense: '+2 attack',
-            defense: 'Mages sometimes defend...',
-            neutral: 'I have no opinion either way on this card...',
-          },
-          cardPower: 3,
-          cardDefense: 2
-        }
-      ],
       playerDiscard: [],
       playerResources: [],
-      playerField: {
+      playerCardZones: {
         resources: [],
         defense: [
-          {
-            name: 'Battle Mage',
-            cost: '4',
-            devotion: {
-              fire: 3,
-              water: 2,
-            },
-            cardType: 'Unit',
-            cardRace: 'Human',
-            cardClass: 'Mage',
-            image: fighterImage,
-            cardEffects: {
-              offense: '+2 attack',
-              defense: 'Mages sometimes defend...',
-              neutral: 'I have no opinion either way on this card...',
-            },
-            cardPower: 3,
-            cardDefense: 2
-          },
-          {
-            name: 'Fighter',
-            cost: '2',
-            devotion: {
-              fire: 2,
-              earth: 2,
-              wind: 2,
-              electric: 2,
-              void: 2,
-              aether: 2,
-              light: 2,
-              dark: 2,
-              water: 2,
-              ice: 2
-            },
-            cardType: 'Unit',
-            cardRace: 'Human',
-            cardClass: 'Warrior',
-            image: fighterImage,
-            cardEffects: {
-              offense: '+1 attack',
-              defense: 'FIGHTERS DO NOT DEFEND',
-              neutral: 'I have no opinion either way on this card...',
-            },
-            cardPower: 2,
-            cardDefense: 3
-          },
         ],
-        offense: []
+        offense: [],
+        hand: [
+        ],
+        deck: [],
+        grave: [],
+        void: [],
+        aether: [],
+        moving: [],
+
       },
       playerParagon: {
         img: shadowFace,
@@ -128,7 +42,8 @@ export default class GameBoard extends Component {
       opponentField: {
         resources: [],
         defense: [],
-        offense: []
+        offense: [],
+        hand: []
       },
       opponentParagon: {
         img: shadowFace,
@@ -147,11 +62,25 @@ export default class GameBoard extends Component {
     this.addHealth = this.addHealth.bind(this)
     this.expandDetails = this.expandDetails.bind(this)
     this.onCardHover = this.onCardHover.bind(this)
-    this.playCard = this.playCard.bind(this)
+    this.returnCard = this.returnCard.bind(this)
     this._onPageClick = this._onPageClick.bind(this)
+
+    this.testFun = this.testFun.bind(this)
   }
   componentDidMount(){
     document.addEventListener('click', this._onPageClick)
+    console.log(cardInfo.fighter)
+
+    let playerCards = JSON.parse(JSON.stringify(this.state.playerCardZones))
+    playerCards.hand.push(JSON.parse(JSON.stringify(cardInfo.fighter)))
+    playerCards.hand.push(JSON.parse(JSON.stringify(cardInfo.battleMage)))
+
+    this.setState({playerCardZones: playerCards})
+    let testArr = cardInfo.fighter
+    let breakArr = cardInfo.fighter
+    breakArr.name = 'SUPER FIGHTER'
+    console.log(testArr)
+
   }
   _onPageClick(e){
     e.stopPropagation()
@@ -165,6 +94,7 @@ export default class GameBoard extends Component {
     }
   }
   onLeftClick(e){
+    e.stopPropagation()
     this.setState({
       menuX: e.clientX,
       menuY: e.clientY,
@@ -172,7 +102,6 @@ export default class GameBoard extends Component {
       justHandledClick: true
     })
   }
-
 
   addHealth(e){
     let newHealth = this.state[`${e.currentTarget.id}Health`] + 1
@@ -205,82 +134,94 @@ export default class GameBoard extends Component {
       cardPreview: [loc, data]
     })
   }
-
-  playCard(loc, data){
-    let playerHand = JSON.parse(JSON.stringify(this.state.playerHand))
-    let playerField = JSON.parse(JSON.stringify(this.state.playerField))
-    let cardPos = loc.split('').filter((v) => !isNaN(v)).join('')
-
-    if(data.cardType !== 'resource'){
-      playerField.defense.push(playerHand[cardPos])
-      playerHand.splice(cardPos, 1)
-
-      this.setState({
-        playerHand,
-        playerField
-      })
-    } else {
-      playerField.resources.push(playerHand[cardPos])
-      playerHand.splice(cardPos, 1)
-
-      this.setState({
-        playerHand,
-        playerField
-      })
-    }
+  testFun(){
+    let playerCardZones = JSON.parse(JSON.stringify(this.state.playerCardZones))
+    playerCardZones.hand.push(JSON.parse(JSON.stringify(cardInfo.fighter)))
+    this.setState({playerCardZones})
   }
   returnCard(loc, data){
-    let playerHand = JSON.parse(JSON.stringify(this.state.playerHand))
-    let playerField = JSON.parse(JSON.stringify(this.state.playerField))
+    let playerCardZones = JSON.parse(JSON.stringify(this.state.playerCardZones))
     let cardPos = loc.split('').filter((v) => !isNaN(v)).join('')
     let cardFieldPos = loc.split('').filter((v)=> isNaN(v)).join('')
 
-    if(data.cardType !== 'resource'){
-      playerField.defense.push(playerHand[cardPos])
-      playerHand.splice(cardPos, 1)
+    console.log(cardFieldPos + ' ' + cardPos)
+    if(cardFieldPos === 'playerDefense'){
+      playerCardZones.offense.push(playerCardZones.defense[cardPos])
+      playerCardZones.defense.splice(cardPos, 1)
 
       this.setState({
-        playerHand,
-        playerField
+        playerCardZones
       })
-    } else {
-      playerField.resources.push(playerHand[cardPos])
-      playerHand.splice(cardPos, 1)
+    } else if (cardFieldPos === 'playerOffense'){
+      playerCardZones.defense.push(playerCardZones.offense[cardPos])
+      playerCardZones.offense.splice(cardPos, 1)
 
       this.setState({
-        playerHand,
-        playerField
+        playerCardZones
+      })
+    } else if (cardFieldPos === 'playerHand'){
+      playerCardZones.defense.push(playerCardZones.hand[cardPos])
+      playerCardZones.hand.splice(cardPos, 1)
+
+      this.setState({
+        playerCardZones,
       })
     }
   }
 
   render(){
     let playerHand = []
+    let playerOffense = []
+    let playerDefense = []
+
+    let playerCards = []
+    console.log(playerCards)
+
     let previewLoc = this.state.cardPreview[0]
     let previewData = this.state.cardPreview[1]
-    this.state.playerHand.forEach((card, i)=>{
+
+    // for(let zone in this.state.playerCardZones){
+    //   zone.forEach((card, i)=>{
+    //     `player${zone}`.
+    //   })
+    // }
+    this.state.playerCardZones.hand.forEach((card, i)=>{
       playerHand.push(
-        <div style={{margin: '0 5px'}} key={'playerHand'+i}>
           <Card
             loc={'playerHand'+i}
             cardSize='full'
             cardData={card}
             key={'playerHand'+i}
-            playCard={this.playCard}
             handleClick={this.onLeftClick}
             onHover={this.onCardHover}
-            clickMenu={[this.state.cardMenuLoc,this.state.menuX,this.state.menuY]}/>
-        </div>)
+          />)
     })
-    let playerDefense = []
-    this.state.playerField.defense.forEach((card, i)=>{
+
+    this.state.playerCardZones.offense.forEach((card, i)=>{
+      playerOffense.push(
+        <Card
+          loc={'playerOffense'+i}
+          cardSize='mini'
+          cardData={card}
+          key={'playerOffense'+i}
+          handleClick={this.onLeftClick}
+          moveLoc={this.returnCard}
+          onHover={this.onCardHover}
+        />
+      )
+    })
+
+    this.state.playerCardZones.defense.forEach((card, i)=>{
       playerDefense.push(
         <Card
           loc={'playerDefense'+i}
           cardSize='mini'
           cardData={card}
           key={'playerDefense'+i}
-          onHover={this.onCardHover}/>
+          handleClick={this.onLeftClick}
+          moveLoc={this.returnCard}
+          onHover={this.onCardHover}
+        />
       )
     })
     return(
@@ -308,7 +249,7 @@ export default class GameBoard extends Component {
         <div className='board-player-side'>
 
           <div className='player-field'>
-            <div className='offense'></div>
+            <div className='offense'>{playerOffense}</div>
             <div className='defense'>{playerDefense}</div>
             <div className='resources'></div>
           </div>
@@ -326,15 +267,18 @@ export default class GameBoard extends Component {
           <div className='details-view-expand' onClick={this.expandDetails}>{this.state.detailsExpanded ? '>' : '<'}</div>
           <div className='details-view-card'>
             {this.state.cardPreview.length >= 2 ? (
-              <Card loc={previewLoc} cardSize='full' cardData={previewData} key={previewLoc} clickMenu={['none']} onHover={function(){}} />
+              <Card loc={previewLoc} cardSize='full' cardData={previewData} key={previewLoc} onHover={function(){}} />
             ) : null}
           </div>
-          <button onClick={() => this.playCard(previewLoc, previewData)}>TEST BUTTON</button>
-        </div>
-        <div className='player-hand'>
-          {playerHand}
+          <button onClick={this.testFun}>TEST BUTTON</button>
 
         </div>
+        <div className='player-hand'>{playerHand}</div>
+
+        <div className='card-test-click-menu' style={{display: this.state.cardMenuLoc !== '' ? 'inline':'none',top: this.state.menuY,left: this.state.menuX}}>
+          <button onClick={()=>this.returnCard(this.state.cardMenuLoc, this.state.playerCardZones[this.state.cardMenuLoc.split('').filter((v)=> isNaN(v)).join('').slice(6).toLowerCase()][this.state.cardMenuLoc.split('').filter((v)=> !isNaN(v)).join('')])}>Move this card?</button>
+        </div>
+
       </div>
     )
   }

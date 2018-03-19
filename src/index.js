@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
-import './App.css'
+import './styles/css/App.css'
 
 import Redirects from './router'
 

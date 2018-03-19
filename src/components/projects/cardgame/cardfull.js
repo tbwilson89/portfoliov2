@@ -92,10 +92,6 @@ export default class Card extends Component {
           <div className='card-legal'>&copy; Trevor B Wilson 2018</div>
         </div>
 
-        <div className='card-click-menu' style={{display: this.props.shouldDisplay[0] === this.props.loc ? 'inline':'none',top: this.props.shouldDisplay[2],left: this.props.shouldDisplay[1]}}>
-          <button onClick={()=>this.props.playCard(this.props.loc, this.props.data)}>Play this card!</button>
-        </div>
-
         {/* <div className='card-info-box'></div> */}
       </div>
     )

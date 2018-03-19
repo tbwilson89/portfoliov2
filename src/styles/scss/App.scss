@@ -27,6 +27,10 @@ nav {
   align-items: center;
   height: 7vh;
   padding: 0 25px;
+  .nav-link-btn {
+    user-select: none;
+  }
+
 }
 #right-nav-container ul {
   display: flex;

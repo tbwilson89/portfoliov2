@@ -9,6 +9,7 @@ import contact from './components/contact'
 
 import card from './components/projects/cardgame/card'
 import GameBoard from './components/projects/cardgame/gameboard'
+import testmove from './components/projects/testmoving'
 
 export default class Redirects extends Component {
   render(){
@@ -75,6 +76,7 @@ export default class Redirects extends Component {
                <Route path='/contact' component={contact} />
                <Route path='/card' component={card} />
                <Route path='/gameboard' component={GameBoard} />
+               <Route path='/testmove' component={testmove} />
              </section>
 
            </div>

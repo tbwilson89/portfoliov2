@@ -12,12 +12,14 @@ export default class Card extends Component {
         <Card
           loc={this.props.loc}
           data={this.props.cardData}
-          playCard={this.props.playCard}
-          shouldDisplay={this.props.clickMenu}
           onClick={this.props.handleClick}
           onHover={this.props.onHover}
         />
       </div>
     )
   }
+}
+
+Card.defaultProps = {
+  moveLoc: function(){}
 }

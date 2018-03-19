@@ -13,9 +13,9 @@
 
   .card-mini-topline {
     display: flex;
-    z-index: 1;
     .card-mini-cost {
       width: 15%;
+      z-index: 1;
       .fire {
         background-color: red;
       }
@@ -65,13 +65,20 @@
     }
   }
 
+  .card-mini-click-menu {
+    position: fixed;
+    z-index: 1000;
+  }
+
   .card-mini-image-box {
     position: absolute;
     overflow: hidden;
     height: 98%;
     width: 98%;
+    z-index: 0;
     img {
       width: 100%;
+      min-height: 100%;
       overflow: hidden;
     }
   }

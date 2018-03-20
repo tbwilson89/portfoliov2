@@ -23,6 +23,22 @@ export default class testMove extends Component {
     this.MouseDown = this.MouseDown.bind(this)
     this.whenMouseMove = this.whenMouseMove.bind(this)
     this.mouseUp = this.mouseUp.bind(this)
+    this.drag = this.drag.bind(this)
+    this.allowDrop = this.allowDrop.bind(this)
+    this.drop = this.drop.bind(this)
+  }
+
+  allowDrop(e){
+    e.preventDefault()
+  }
+  drag(e){
+    console.log(e.dataTransfer.getData('test') + ' ' + e.target)
+    e.dataTransfer.setData('text', e.target.id)
+  }
+  drop(e){
+    e.preventDefault()
+    var data = e.dataTransfer.getData('text')
+    e.target.appendChild(document.getElementById(data))
   }
 
   componentDidMount(){
@@ -103,6 +119,25 @@ export default class testMove extends Component {
       <div className='wrapper' onMouseMove={this.whenMouseMove} onMouseLeave={this.mouseUp} onMouseUp={this.mouseUp}>
         <div className='sectionOne'>{secOne}</div>
         <div className='sectionTwo'>{}</div>
+        <div style={{height: '150px', width: '150px', border: '1px solid black'}} onDrop={this.drop} onDragOver={this.allowDrop}></div>
+        <div style={{height: '150px', width: '150px', border: '1px solid black'}} onDrop={this.drop} onDragOver={this.allowDrop}></div>
+
+        <div
+          id='testmover'
+          draggable='true'
+          onDragStart={this.drag}
+          style={{height: '100px', width: '100px', backgroundColor: 'red'}}
+          >
+
+        </div>
+        <div
+          id='testmover2'
+          draggable='true'
+          onDragStart={this.drag}
+          style={{height: '100px', width: '100px', backgroundColor: 'green'}}
+          >
+
+        </div>
       </div>
     )
   }

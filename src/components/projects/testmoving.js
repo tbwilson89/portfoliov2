@@ -63,23 +63,23 @@ export default class testMove extends Component {
   }
 
   render(){
-    let secOne = this.state.sectionOne.map((s,i)=>{
-      return (
-        <div
-          id={`sectionOne${i}`}
-          className='square'
-          // onMouseMove={this.whenMouseMove}
-          style={{
-            height: '100px',
-            width: '100px',
-            backgroundColor: 'blue',
-            position: this.state.sectionOne[i].dragging ? 'absolute' : 'inline',
-            top:  this.state.sectionOne[i].y,
-            left: this.state.sectionOne[i].x
-          }}
-          ></div>
-      )
-    })
+    // let secOne = this.state.sectionOne.map((s,i)=>{
+    //   return (
+    //     <div
+    //       id={`sectionOne${i}`}
+    //       className='square'
+    //       // onMouseMove={this.whenMouseMove}
+    //       style={{
+    //         height: '100px',
+    //         width: '100px',
+    //         backgroundColor: 'blue',
+    //         position: this.state.sectionOne[i].dragging ? 'absolute' : 'inline',
+    //         top:  this.state.sectionOne[i].y,
+    //         left: this.state.sectionOne[i].x
+    //       }}
+    //       ></div>
+    //   )
+    // })
     // let secTwo = this.state.sectionOne.map((i)=>(<div id={`sectwo${i}`} className='square' style={{height: '100px', width: '100px',backgroundColor: 'blue'}} onClick={this.dragElement}></div>))
     return(
         <div className='wrapper'
@@ -91,9 +91,9 @@ export default class testMove extends Component {
             gridTemplateAreas: "'oresources oresources' 'oattack odefense''pdefense pattack' 'presources presources'",
             gridGap: '1em',
             padding: '1em 1em 2em 1em',
-            overflow: 'hidden'
+            overflow: 'hidden',
           }}>
-          <div className='opponent-resources' style={{backgroundColor: '#0e0', gridArea: 'oresources', display: 'grid', gridTemplateColumns: 'repeat(5,1fr)'}} onDrop={this.drop} onDragOver={this.allowDrop}></div>
+          <div className='opponent-resources' style={{backgroundColor: '#0e0', gridArea: 'oresources', display: 'grid'}} onDrop={this.drop} onDragOver={this.allowDrop}></div>
           <div className='opponent-defense' style={{backgroundColor: '#00e', gridArea: 'odefense', display: 'flex', flexWrap: 'wrap'}} onDrop={this.drop} onDragOver={this.allowDrop}></div>
           <div className='opponent-attack' style={{backgroundColor: '#e00', gridArea: 'oattack', display: 'flex', flexWrap: 'wrap'}} onDrop={this.drop} onDragOver={this.allowDrop}></div>
 

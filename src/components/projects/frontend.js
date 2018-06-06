@@ -2,9 +2,9 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 import ProjectBox from './projectbox'
-import {BEProjectData} from '../../data/projects'
+import {FEProjectData} from '../../data/projects'
 
-const BEProjects = ({match}) => {
+const FEProjects = ({match}) => {
   let style = {
     height: '80%',
     width: '80%',
@@ -21,8 +21,8 @@ const BEProjects = ({match}) => {
     borderRadius: '5px',
   }
   const projectBoxes = []
-  for(let p in BEProjectData){
-    let project = BEProjectData[p]
+  for(let p in FEProjectData){
+    let project = FEProjectData[p]
     projectBoxes.push(
       <div style={boxStyle} key={project.title}>
         <Link to={`${match.url}/${project.title}`}>
@@ -40,4 +40,4 @@ const BEProjects = ({match}) => {
   )
 }
 
-export default BEProjects
+export default FEProjects

@@ -10,6 +10,7 @@ export default class Linkbox extends Component {
         textAlign: 'center',
         margin: '0 5px',
         minWidth: '200px',
+        height: '100%',
         boxShadow: '0 0 5px 1px black',
         cursor: 'pointer'
       }}>

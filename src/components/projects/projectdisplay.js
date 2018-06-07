@@ -22,7 +22,7 @@ const ProjectDisplay = ({match}) => {
   return(
     <div className='content-wrapper' style={{height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
       <div style={{height: '80%', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-        <img style={{height: '30%', width: '20%', marginRight: '10px', ...style}} alt={project.title} src={project.image}/>
+        <img style={{height: '30%', width: '20%', marginRight: '10px', ...style}} alt={project.name} src={project.image}/>
         <div style={{height: '100%', width: '40%', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
           <div style={{height: '10%', ...style}}>
             <h1>{project.title}</h1>

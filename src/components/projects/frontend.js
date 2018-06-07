@@ -24,8 +24,8 @@ const FEProjects = ({match}) => {
   for(let p in FEProjectData){
     let project = FEProjectData[p]
     projectBoxes.push(
-      <div style={boxStyle} key={project.title}>
-        <Link to={`${match.url}/${project.title}`}>
+      <div style={boxStyle} key={project.name}>
+        <Link to={`${match.url}/${project.name}`}>
           <ProjectBox name={project.title} info={project.info}/>
         </Link>
       </div>

@@ -18,7 +18,7 @@ import testmove from './components/projects/testmoving'
 export default class Redirects extends Component {
   render(){
     return(
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <div className='App'>
 
            <div className='wrapper'>
@@ -72,12 +72,11 @@ export default class Redirects extends Component {
              </nav>
 
              <section className='main-content'>
-               {/* <Route exact path='/' component={landing} /> */}
-               <Route exact path='/portfoliov2' component={landing} />
+               <Route exact path='/' component={landing} />
                <Route exact path='/projects' component={projects} />
                <Route exact path='/projects/frontend' component={feprojects} />
                <Route exact path='/projects/backend' component={beprojects} />
-               <Route path={process.env.PUBLIC_URL + '/'} component={landing} />
+               {/* <Route path={process.env.PUBLIC_URL + '/'} component={landing} /> */}
                <Route exact path='/projects/personal' component={personalprojects} />
                <Route path='/projects/backend/:project' component={projectdisplay} />
                <Route path='/projects/frontend/:project' component={projectdisplay} />

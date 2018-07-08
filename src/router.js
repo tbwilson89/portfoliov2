@@ -73,6 +73,7 @@ export default class Redirects extends Component {
 
              <section className='main-content'>
                <Route exact path='/' component={landing} />
+               <Route exact path='/portfoliov2' component={landing} />
                <Route exact path='/projects' component={projects} />
                <Route exact path='/projects/frontend' component={feprojects} />
                <Route exact path='/projects/backend' component={beprojects} />

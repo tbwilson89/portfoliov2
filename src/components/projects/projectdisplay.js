@@ -33,10 +33,10 @@ const ProjectDisplay = ({match}) => {
             </p>
           </div>
           <div style={{height: '30%', ...style}}>
-            <p>
+            <p style={{padding: '15px'}}>
               {project.learned}
             </p>
-            <h5><a href={project.url}>-&gt;Check it out&lt;-</a></h5>
+            <h5><a href={project.url} style={{fontSize: '1.3em'}}>&gt; Check it out &lt;</a></h5>
           </div>
         </div>
       </div>

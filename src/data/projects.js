@@ -7,8 +7,10 @@ import simonss from '../images/simonss.PNG'
 import quotess from '../images/quotess.png'
 import wikifinderss from '../images/wikifinderss.png'
 
+import todolist from '../images/todolistss.PNG'
 import urlshorten from '../images/urlshortenss.PNG'
 import timestamp from '../images/timestampss.PNG'
+import userdata from '../images/userdatass.PNG'
 
 
 
@@ -79,21 +81,37 @@ const FEProjectData = {
 }
 
 const BEProjectData = {
+  todolist: {
+    name: 'todolist',
+    title: 'Todo List',
+    info: 'Add, mark complete or remove "todos" from a persistent database list.',
+    learned: 'An application that has an input field for entering in a "todo" that can be submitted and added to the list as well as the database. When the page loads it pulls the data from the database to create the list of todos, users can add, mark complete (by a strike through the text) or remove any item in the list, which will the update the database accordingly.',
+    url: 'https://tbw-checklist-app.herokuapp.com/',
+    image: todolist,
+  },
   URLShortener: {
     name: 'URLShortener',
     title: 'URL Shortener',
-    info: 'A website that allows a user to input a HTTP website and get a (potentially) shorter address alternative. New websites are added to a database and repeat searches return what is saved in the database. When trying to use the "short" address the user is forwarded to the appropriate website.',
-    learned: 'Having user input update a database and the database be used to pull data and redirect based on the address the user goes to.',
-    url: 'https://blooming-oasis-62929.herokuapp.com/',
+    info: 'Through user input of an HTTP website, return a new (potentially) shorter URL to be used for redirection to the requested website.',
+    learned: 'By having users input a website, a query is used to search if the website is already in the database or not. If the website is already in the database, it responds with a "shorter" URL that when visited will redirect the user to the appropriate webpage. Alternatively, if the website does not exist within the database it will then be added and have a new short URL created with the database entry and then have that returned for the user to access for the redirect to their webpage of choice.',
+    url: 'https://tbw-urlshortener.herokuapp.com/',
     image: urlshorten,
   },
   timestamp: {
     name: 'timestamp',
     title: 'Date and Unix Converter',
-    info: 'A website that allows a user to input a HTTP website and get a (potentially) shorter address alternative. New websites are added to a database and repeat searches return what is saved in the database. When trying to use the "short" address the user is forwarded to the appropriate website.',
-    learned: 'Having user input update a database and the database be used to pull data and redirect based on the address the user goes to.',
-    url: 'https://blooming-sands-60050.herokuapp.com/',
+    info: 'JSON display of a conversion of a date or UNIX time input by the user.',
+    learned: '',
+    url: 'https://tbw-unixconverter.herokuapp.com/',
     image: timestamp,
+  },
+  showip: {
+    name: 'showip',
+    title: 'Display User Data',
+    info: 'Simple display of the IP address, operating system and and language of the user accessing the website.',
+    learned: 'Through this small application I learned how to access the data from users who are sending requests to the server and have it display for them to see on the page.',
+    url: 'https://tbw-showipos.herokuapp.com/',
+    image: userdata,
   }
 }
 

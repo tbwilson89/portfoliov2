@@ -1,7 +1,0 @@
-import React, {Component} from 'react'
-
-export default class Social extends Component {
-  render(){
-    return(<div>This is the Social page</div>)
-  }
-}
